@@ -10,8 +10,8 @@ module.exports = {
     enable: true,
     package: 'egg-mongoose',
   },
-  // validate: {
-  //   enable: true,
-  //   package: 'egg-validate',
-  // },
+  validate: {
+    enable: true,
+    package: 'egg-validate',
+  },
 };

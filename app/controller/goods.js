@@ -2,11 +2,18 @@
 
 const PaginationController = require('../core/pagination_controller');
 
+const createRules = {
+  _id: {
+    type: 'string',
+    required: true,
+  },
+};
+
 class GoodsController extends PaginationController {
   async list() {
-    const { ctx } = this;
+    const { ctx, service } = this;
     const pagination = this.pagination;
-    const dataSource = [{ nane: 'milk' }, { nane: 'milk' }, { nane: 'milk' }];
+    const dataSource = await service.goods.find({});
 
     const res = this.responseData(dataSource, pagination);
     ctx.body = res;
@@ -15,6 +22,7 @@ class GoodsController extends PaginationController {
   async detail() {
     const { ctx, service } = this;
     const { params } = ctx;
+
     const data = await service.goods.findById(params.id);
     ctx.body = data;
   }
@@ -34,8 +42,13 @@ class GoodsController extends PaginationController {
   }
 
   async remove() {
-    const { ctx, service } = this;
+    const { ctx, service, app } = this;
     const { request } = ctx;
+    const errors = app.validator.validate(createRules, request.body);
+    if (errors) {
+      ctx.body = errors;
+      return;
+    }
     const result = await service.goods.remove(request.body);
     ctx.body = result;
   }

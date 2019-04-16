@@ -7,18 +7,23 @@ module.exports = app => {
   const GoodsSchema = new Schema({
     name: String,
     price: Number,
-    wholesaleProce: Number,
+    wholesalePrice: Number,
     imgUrl: String,
     description: String,
     qty: Number,
     lockQty: Number,
+    unit: {
+      type: String,
+      // enum: ['瓶', '箱'],
+      // default: 'NEW',
+    },
     meta: {
       createdAt: {
-        type: Date,
+        type: Number,
         default: Date.now(),
       },
       updatedAt: {
-        type: Date,
+        type: Number,
         default: Date.now(),
       },
     },
