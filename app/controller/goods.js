@@ -1,8 +1,8 @@
 'use strict';
 
-const Controller = require('../core/pagination_controller');
+const PaginationController = require('../core/pagination_controller');
 
-class GoodsController extends Controller {
+class GoodsController extends PaginationController {
   async list() {
     const { ctx } = this;
     const pagination = this.pagination;
@@ -15,9 +15,29 @@ class GoodsController extends Controller {
   async detail() {
     const { ctx, service } = this;
     const { params } = ctx;
-
-    const data = await service.goods.find(params.id);
+    const data = await service.goods.findById(params.id);
     ctx.body = data;
+  }
+
+  async create() {
+    const { ctx, service } = this;
+    const { request } = ctx;
+    const result = await service.goods.create(request.body);
+    ctx.body = result;
+  }
+
+  async update() {
+    const { ctx, service } = this;
+    const { request } = ctx;
+    const result = await service.goods.update(request.body);
+    ctx.body = result;
+  }
+
+  async remove() {
+    const { ctx, service } = this;
+    const { request } = ctx;
+    const result = await service.goods.remove(request.body);
+    ctx.body = result;
   }
 }
 
