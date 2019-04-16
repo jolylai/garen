@@ -7,6 +7,7 @@ module.exports = app => {
   const GoodsSchema = new Schema({
     name: String,
     price: Number,
+    wholesaleProce: Number,
     imgUrl: String,
     description: String,
     qty: Number,

@@ -19,6 +19,10 @@ class GoodsController extends Controller {
     const data = await service.goods.find(params.id);
     ctx.body = data;
   }
+
+  async add() {
+    const { ctx, service } = this;
+  }
 }
 
 module.exports = GoodsController;

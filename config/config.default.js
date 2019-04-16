@@ -26,7 +26,7 @@ module.exports = appInfo => {
   // mongodb
   const mongoose = {
     client: {
-      url: 'mongodb://127.0.0.1/example',
+      url: 'mongodb://127.0.0.1:27017/test',
       options: {},
     },
   };
