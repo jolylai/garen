@@ -2,26 +2,26 @@
 
 const Controller = require('egg').Controller;
 
-class UserController extends Controller {
+class OrderController extends Controller {
   async detail() {
     const { ctx, service } = this;
     const { params } = ctx;
 
-    const data = await service.user.findById(params.id);
+    const data = await service.order.findById(params.id);
     ctx.body = data;
   }
 
   async create() {
     const { ctx, service } = this;
     const { request } = ctx;
-    const result = await service.user.create(request.body);
+    const result = await service.order.create(request.body);
     ctx.body = result;
   }
 
   async update() {
     const { ctx, service } = this;
     const { request } = ctx;
-    const result = await service.user.update(request.body);
+    const result = await service.order.update(request.body);
     ctx.body = result;
   }
 
@@ -33,9 +33,9 @@ class UserController extends Controller {
       ctx.body = errors;
       return;
     }
-    const result = await service.user.remove(request.body);
+    const result = await service.order.remove(request.body);
     ctx.body = result;
   }
 }
 
-module.exports = UserController;
+module.exports = OrderController;

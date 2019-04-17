@@ -2,31 +2,31 @@
 
 const Service = require('egg').Service;
 
-class UserService extends Service {
-  callback(error, goods) {
+class OrderService extends Service {
+  callback(error, order) {
     if (error) {
       const { logger } = this.ctx;
       logger.error(error);
       return;
     }
-    return goods;
+    return order;
   }
 
   async find(params) {
     const { ctx } = this;
-    const result = await ctx.model.User.find(params, this.callback);
+    const result = await ctx.model.Order.find(params, this.callback);
     return result;
   }
 
   async create(params) {
     const { ctx } = this;
-    const result = await ctx.model.User.create(params, this.callback);
+    const result = await ctx.model.Order.create(params, this.callback);
     return result;
   }
 
   async update(params) {
     const { ctx } = this;
-    const result = await ctx.model.User.update(
+    const result = await ctx.model.Order.update(
       { _id: params._id },
       params,
       {},
@@ -37,7 +37,7 @@ class UserService extends Service {
 
   async remove(_id) {
     const { ctx } = this;
-    const result = await ctx.model.User.remove({ _id }, function(error) {
+    const result = await ctx.model.Order.remove({ _id }, function(error) {
       if (error) {
         ctx.logger.error(error);
       }
@@ -46,4 +46,4 @@ class UserService extends Service {
   }
 }
 
-module.exports = UserService;
+module.exports = OrderService;
