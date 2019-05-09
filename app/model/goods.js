@@ -17,15 +17,13 @@ module.exports = app => {
       // enum: ['瓶', '箱'],
       // default: 'NEW',
     },
-    meta: {
-      createdAt: {
-        type: Number,
-        default: Date.now(),
-      },
-      updatedAt: {
-        type: Number,
-        default: Date.now(),
-      },
+    createdAt: {
+      type: Number,
+      default: Date.now(),
+    },
+    updatedAt: {
+      type: Number,
+      default: Date.now(),
     },
   });
 

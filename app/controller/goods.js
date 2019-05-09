@@ -17,7 +17,7 @@ class GoodsController extends PaginationController {
 
     const res = this.responseData(dataSource, pagination);
     ctx.body = {
-      data: res,
+      body: res,
       status: true,
       message: 'success',
     };
@@ -28,7 +28,11 @@ class GoodsController extends PaginationController {
     const { params } = ctx;
 
     const data = await service.goods.findById(params.id);
-    ctx.body = data;
+    ctx.body = {
+      body: data,
+      message: 'success',
+      status: true,
+    };
   }
 
   async create() {

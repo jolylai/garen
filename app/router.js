@@ -8,13 +8,17 @@ module.exports = app => {
   router.get('/', controller.home.index);
 
   // 登录
-  router.post('api/login', controller.login.index);
+  router.post('/api/login', controller.login.index);
+
+  // 短信验证码
+  router.post('/api/common/sms', controller.common.sms);
 
   // 用户
-  router.get('api/user/:id', controller.user.detail);
-  router.post('api/user/create', controller.user.create);
-  router.post('api/user/remove', controller.user.remove);
-  router.post('api/user/update', controller.user.update);
+  router.get('/api/user/:id', controller.user.detail);
+  router.post('/api/user/list', controller.user.list);
+  router.post('/api/user/create', controller.user.create);
+  router.post('/api/user/remove', controller.user.remove);
+  router.post('/api/user/update', controller.user.update);
 
   // 商品
   router.post('/api/goods/list', controller.goods.list);

@@ -20,19 +20,33 @@ class UserService extends Service {
 
   async create(params) {
     const { ctx } = this;
-    const result = await ctx.model.User.create(params, this.callback);
+
+    function callback(error, user) {
+      if (error) {
+        throw error;
+      }
+      return user;
+    }
+    const result = await ctx.model.User.create(params, callback);
     return result;
   }
 
   async update(params) {
     const { ctx } = this;
-    const result = await ctx.model.User.update(
-      { _id: params._id },
-      params,
-      {},
-      this.callback
-    );
-    return result;
+    try {
+      const result = await ctx.model.User.updateOne(
+        { _id: params._id },
+        params,
+        function(error, user) {
+          if (error) {
+          }
+          return user;
+        }
+      );
+      return result;
+    } catch (error) {
+      throw error;
+    }
   }
 
   async remove(_id) {
