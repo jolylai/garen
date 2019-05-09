@@ -11,11 +11,32 @@ class OrderController extends Controller {
     ctx.body = data;
   }
 
+  /**
+   * 创建订单
+   *
+   * @memberof OrderController
+   */
   async create() {
     const { ctx, service } = this;
-    const { request } = ctx;
-    const result = await service.order.create(request.body);
-    ctx.body = result;
+    const { userId, goods } = ctx.request.body;
+    try {
+      const createRule = {
+        userId: 'string',
+        goods: 'array',
+      };
+      ctx.validate(createRule);
+      goods.forEach(item => (item.user = userId));
+      const data = await service.order.create(goods);
+      ctx.body = {
+        body: data,
+        status: true,
+      };
+    } catch (error) {
+      ctx.body = {
+        error,
+        status: false,
+      };
+    }
   }
 
   async update() {
@@ -26,15 +47,7 @@ class OrderController extends Controller {
   }
 
   async remove() {
-    const { ctx, service, app } = this;
-    const { request } = ctx;
-    const errors = app.validator.validate(createRules, request.body);
-    if (errors) {
-      ctx.body = errors;
-      return;
-    }
-    const result = await service.order.remove(request.body);
-    ctx.body = result;
+    // todo
   }
 }
 

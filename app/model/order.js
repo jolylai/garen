@@ -6,7 +6,10 @@ module.exports = app => {
 
   const OrderSchema = new Schema({
     orderNo: String,
-    type: {
+    number: {
+      type: Number,
+    },
+    status: {
       type: Number,
       enum: [0, 1, 2, 3],
       default: 0,
@@ -15,17 +18,25 @@ module.exports = app => {
       type: Schema.Types.ObjectId,
       ref: 'goods',
     },
-    number: {
-      type: Number,
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
     },
+
     createdAt: {
-      type: Date,
+      type: Number,
       default: Date.now(),
     },
     updatedAt: {
-      type: Date,
+      type: Number,
       default: Date.now(),
     },
+  });
+
+  OrderSchema.pre('save', function(next) {
+    const now = Date.now();
+    this.updatedAt = now;
+    next();
   });
 
   return mongoose.model('Order', OrderSchema);

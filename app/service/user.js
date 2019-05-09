@@ -3,61 +3,49 @@
 const Service = require('egg').Service;
 
 class UserService extends Service {
-  callback(error, goods) {
-    if (error) {
-      const { logger } = this.ctx;
-      logger.error(error);
-      return;
-    }
-    return goods;
-  }
-
-  async find(params) {
+  /*
+   * 根据用户Id查找用户信息
+   * @param {Array} id 用户id
+   * @return {Promise[users]} 承载用户列表的 Promise 对象
+   */
+  getById(id) {
     const { ctx } = this;
-    const result = await ctx.model.User.find(params, this.callback);
-    return result;
+    return ctx.model.User.findById(id).exec();
   }
 
-  async create(params) {
+  async getList(params) {
     const { ctx } = this;
+    const { pageNumber = 1, pageSize = 10, ...restParams } = params;
+    const skipNumber = (pageNumber - 1) * pageSize;
+    const data = await ctx.model.User.find(restParams)
+      .skip(skipNumber)
+      .limit(pageSize);
 
-    function callback(error, user) {
-      if (error) {
-        throw error;
-      }
-      return user;
-    }
-    const result = await ctx.model.User.create(params, callback);
-    return result;
+    return data;
   }
 
-  async update(params) {
-    const { ctx } = this;
-    try {
-      const result = await ctx.model.User.updateOne(
-        { _id: params._id },
-        params,
-        function(error, user) {
-          if (error) {
-          }
-          return user;
-        }
-      );
-      return result;
-    } catch (error) {
-      throw error;
-    }
+  create(params) {
+    return this.ctx.model.User.create(params);
   }
 
-  async remove(_id) {
-    const { ctx } = this;
-    const result = await ctx.model.User.remove({ _id }, function(error) {
-      if (error) {
-        ctx.logger.error(error);
-      }
-    });
-    return result;
+  update(params) {
+    const doc = {
+      name: params.name,
+    };
+    return this.ctx.model.User.updateOne({ _id: params._id }, doc).exec();
   }
+
+  // makeGravatar(email) {
+  //   return (
+  //     'http://www.gravatar.com/avatar/' +
+  //     utility.md5(email.toLowerCase()) +
+  //     '?size=48'
+  //   );
+  // }
+
+  // getGravatar(user) {
+  //   return user.avatar || this.makeGravatar(user.email);
+  // }
 }
 
 module.exports = UserService;

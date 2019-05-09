@@ -1,0 +1,27 @@
+@domain = http://127.0.0.1:7001
+
+### User Create
+POST {{domain}}/api/user/create HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Tom"
+}
+
+### User List
+POST {{domain}}/api/user/list HTTP/1.1
+content-type: application/json
+
+{
+  "pageNumber": 1,
+  "pageSize": 10
+}
+
+### User Update
+POST {{domain}}/api/user/update HTTP/1.1
+content-type: application/json
+
+{
+  "_id": "5cd390388124fb339807dd53",
+  "name": "jack111"
+}

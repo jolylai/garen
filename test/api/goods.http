@@ -1,0 +1,33 @@
+@domain = http://127.0.0.1:7001
+
+### goods Create
+POST {{domain}}/api/goods/create HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Jack66"
+}
+
+### goods List
+POST {{domain}}/api/goods/list HTTP/1.1
+content-type: application/json
+
+{
+  "pageNumber": 1,
+  "pageSize": 100
+}
+
+### goods Update
+POST {{domain}}/api/goods/update HTTP/1.1
+content-type: application/json
+
+{
+  "_id": "5cd39ca728bcd710604ce7ec",
+  "name": "jack1"
+}
+
+### goods Detail
+GEt {{domain}}/api/goods/5cd39ca728bcd710604ce7ec HTTP/1.1
+
+### goods Remove
+GEt {{domain}}/api/goods/remove/5cd3d63af0df2a6e30a182df HTTP/1.1

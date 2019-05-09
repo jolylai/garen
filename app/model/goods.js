@@ -5,17 +5,29 @@ module.exports = app => {
   const Schema = mongoose.Schema;
 
   const GoodsSchema = new Schema({
-    name: String,
-    price: Number,
-    wholesalePrice: Number,
-    imgUrl: String,
-    description: String,
-    qty: Number,
-    lockQty: Number,
+    name: {
+      type: String,
+    },
+    price: {
+      type: Number,
+    },
+    wholesalePrice: {
+      type: Number,
+    },
+    imgUrl: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
+    qty: {
+      type: Number,
+    },
+    lockQty: {
+      type: Number,
+    },
     unit: {
       type: String,
-      // enum: ['瓶', '箱'],
-      // default: 'NEW',
     },
     createdAt: {
       type: Number,
@@ -25,6 +37,12 @@ module.exports = app => {
       type: Number,
       default: Date.now(),
     },
+  });
+
+  GoodsSchema.pre('save', function(next) {
+    const now = Date.now();
+    this.updatedAt = now;
+    next();
   });
 
   return mongoose.model('Goods', GoodsSchema);

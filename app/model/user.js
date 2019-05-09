@@ -39,5 +39,11 @@ module.exports = app => {
     },
   });
 
+  UserSchema.pre('save', function(next) {
+    const now = Date.now();
+    this.updatedAt = now;
+    next();
+  });
+
   return mongoose.model('User', UserSchema);
 };
