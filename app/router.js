@@ -8,10 +8,17 @@ module.exports = app => {
   router.get('/', controller.home.index);
 
   // 登录
-  router.post('api/login', controller.login.index);
+  router.post('/api/login', controller.login.index);
+
+  // 短信验证码
+  router.post('/api/common/sms', controller.common.sms);
 
   // 用户
-  router.get('api/user', controller.user.index);
+  router.get('/api/user/:id', controller.user.detail);
+  router.post('/api/user/list', controller.user.list);
+  router.post('/api/user/create', controller.user.create);
+  router.post('/api/user/remove', controller.user.remove);
+  router.post('/api/user/update', controller.user.update);
 
   // 商品
   router.post('/api/goods/list', controller.goods.list);
@@ -19,4 +26,10 @@ module.exports = app => {
   router.post('/api/goods/create', controller.goods.create);
   router.post('/api/goods/remove', controller.goods.remove);
   router.post('/api/goods/update', controller.goods.update);
+
+  // 订单
+  router.get('api/order/:id', controller.order.detail);
+  router.post('api/order/create', controller.order.create);
+  router.post('api/order/remove', controller.order.remove);
+  router.post('api/order/update', controller.order.update);
 };

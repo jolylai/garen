@@ -10,12 +10,15 @@ module.exports = app => {
       unique: true,
       type: String,
     },
+    mobile: {
+      unique: true,
+      type: String,
+    },
     email: {
       unique: true,
       type: String,
     },
     password: {
-      unique: true,
       type: String,
     },
     role: {
@@ -26,15 +29,13 @@ module.exports = app => {
     },
     address: String,
     balance: Number,
-    meta: {
-      createdAt: {
-        type: Date,
-        default: Date.now(),
-      },
-      updatedAt: {
-        type: Date,
-        default: Date.now(),
-      },
+    createdAt: {
+      type: Number,
+      default: Date.now(),
+    },
+    updatedAt: {
+      type: Number,
+      default: Date.now(),
     },
   });
 

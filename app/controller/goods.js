@@ -16,7 +16,11 @@ class GoodsController extends PaginationController {
     const dataSource = await service.goods.find({});
 
     const res = this.responseData(dataSource, pagination);
-    ctx.body = res;
+    ctx.body = {
+      body: res,
+      status: true,
+      message: 'success',
+    };
   }
 
   async detail() {
@@ -24,7 +28,11 @@ class GoodsController extends PaginationController {
     const { params } = ctx;
 
     const data = await service.goods.findById(params.id);
-    ctx.body = data;
+    ctx.body = {
+      body: data,
+      message: 'success',
+      status: true,
+    };
   }
 
   async create() {
@@ -50,7 +58,11 @@ class GoodsController extends PaginationController {
       return;
     }
     const result = await service.goods.remove(request.body);
-    ctx.body = result;
+    ctx.body = {
+      data: result,
+      message: 'success',
+      status: true,
+    };
   }
 }
 
