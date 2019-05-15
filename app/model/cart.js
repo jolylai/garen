@@ -5,13 +5,13 @@ module.exports = app => {
   const Schema = mongoose.Schema;
 
   const CartSchema = new Schema({
-    userId: {
+    user: {
       type: Schema.Types.ObjectId,
-      ref: 'user',
+      ref: 'User',
     },
-    goodsId: {
+    goods: {
       type: Schema.Types.ObjectId,
-      ref: 'goods',
+      ref: 'Goods',
     },
     number: {
       type: Number,
@@ -24,6 +24,12 @@ module.exports = app => {
       type: Number,
       default: Date.now(),
     },
+  });
+
+  CartSchema.pre('save', function(next) {
+    const now = Date.now();
+    this.updatedAt = now;
+    next();
   });
 
   return mongoose.model('Cart', CartSchema);

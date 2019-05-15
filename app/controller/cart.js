@@ -3,13 +3,73 @@
 const Controller = require('egg').Controller;
 
 class CartController extends Controller {
-  async index() {
-    // todo 登录逻辑
-    // Cookie Session
+  async list() {
     const { ctx, service } = this;
-    const author = ctx.session;
-    console.log('author: ', author);
-    ctx.body = 'hi, egg';
+    try {
+      const data = await service.cart.findByUserId(ctx.request.body.userId);
+      ctx.body = {
+        body: data,
+        status: true,
+        message: 'success',
+      };
+    } catch (error) {
+      ctx.body = {
+        error,
+        status: false,
+      };
+    }
+  }
+
+  async create() {
+    const { ctx, service } = this;
+    try {
+      const data = await service.cart.create(ctx.request.body);
+      ctx.body = {
+        body: data,
+        status: true,
+        message: 'success',
+      };
+    } catch (error) {
+      ctx.body = {
+        error,
+        status: false,
+      };
+    }
+  }
+
+  async deleteOne() {
+    const { ctx, service } = this;
+    try {
+      const data = await service.cart.deleteOne(ctx.params.id);
+      ctx.body = {
+        body: data,
+        status: true,
+        message: 'success',
+      };
+    } catch (error) {
+      ctx.body = {
+        error,
+        status: false,
+      };
+    }
+  }
+
+  async deleteAll() {
+    const { ctx, service } = this;
+    try {
+      const data = await service.cart.deleteAll(ctx.params.userid);
+      console.log('ctx.params.userid: ', ctx.params.userid);
+      ctx.body = {
+        body: data,
+        status: true,
+        message: 'success',
+      };
+    } catch (error) {
+      ctx.body = {
+        error,
+        status: false,
+      };
+    }
   }
 }
 

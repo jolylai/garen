@@ -5,10 +5,18 @@ const Controller = require('egg').Controller;
 class OrderController extends Controller {
   async detail() {
     const { ctx, service } = this;
-    const { params } = ctx;
-
-    const data = await service.order.findById(params.id);
-    ctx.body = data;
+    try {
+      const data = await service.order.findById(ctx.params.id);
+      ctx.body = {
+        body: data,
+        status: true,
+      };
+    } catch (error) {
+      ctx.body = {
+        error,
+        status: false,
+      };
+    }
   }
 
   /**
@@ -18,15 +26,13 @@ class OrderController extends Controller {
    */
   async create() {
     const { ctx, service } = this;
-    const { userId, goods } = ctx.request.body;
     try {
       const createRule = {
-        userId: 'string',
-        goods: 'array',
+        user: 'string',
+        cart: 'array',
       };
       ctx.validate(createRule);
-      goods.forEach(item => (item.user = userId));
-      const data = await service.order.create(goods);
+      const data = await service.order.create(ctx.request.body);
       ctx.body = {
         body: data,
         status: true,
@@ -41,9 +47,19 @@ class OrderController extends Controller {
 
   async update() {
     const { ctx, service } = this;
-    const { request } = ctx;
-    const result = await service.order.update(request.body);
-    ctx.body = result;
+
+    try {
+      const data = await service.order.update(ctx.request.body);
+      ctx.body = {
+        body: data,
+        status: true,
+      };
+    } catch (error) {
+      ctx.body = {
+        error,
+        status: false,
+      };
+    }
   }
 
   async remove() {

@@ -5,7 +5,9 @@ module.exports = app => {
   const Schema = mongoose.Schema;
 
   const OrderSchema = new Schema({
-    orderNo: String,
+    orderNo: {
+      type: String,
+    },
     number: {
       type: Number,
     },
@@ -14,15 +16,16 @@ module.exports = app => {
       enum: [0, 1, 2, 3],
       default: 0,
     },
-    goods: {
-      type: Schema.Types.ObjectId,
-      ref: 'goods',
-    },
+    cart: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Cart',
+      },
+    ],
     user: {
       type: Schema.Types.ObjectId,
-      ref: 'user',
+      ref: 'User',
     },
-
     createdAt: {
       type: Number,
       default: Date.now(),

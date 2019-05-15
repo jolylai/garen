@@ -30,6 +30,12 @@ module.exports = app => {
   // 订单
   router.get('/api/order/:id', controller.order.detail);
   router.post('/api/order/create', controller.order.create);
-  router.post('/api/order/remove', controller.order.remove);
+  // router.post('/api/order/remove', controller.order.remove);
   router.post('/api/order/update', controller.order.update);
+
+  // 购物车
+  router.post('/api/cart/list', controller.cart.list);
+  router.post('/api/cart/create', controller.cart.create);
+  router.get('/api/cart/deleteone/:id', controller.cart.deleteOne);
+  router.get('/api/cart/deleteall/:userid', controller.cart.deleteAll);
 };

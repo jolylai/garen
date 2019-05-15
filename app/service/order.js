@@ -3,9 +3,14 @@
 const Service = require('egg').Service;
 
 class OrderService extends Service {
-  async find(params) {
+  async findById(id) {
     const { ctx } = this;
-    const result = await ctx.model.Order.find(params, this.callback);
+    const result = ctx.model.Order.findById(id)
+      .populate({
+        path: 'cart',
+        populate: { path: 'goods', select: 'name _id' },
+      })
+      .exec();
     return result;
   }
 
@@ -37,7 +42,7 @@ class OrderService extends Service {
 
   update(params) {
     const doc = {
-      name: params.name,
+      status: params.status,
     };
     return this.ctx.model.Order.updateOne({ _id: params._id }, doc).exec();
   }

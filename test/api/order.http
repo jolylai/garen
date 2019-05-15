@@ -1,41 +1,33 @@
 @domain = http://127.0.0.1:7001
 
-### order Create
+### Create
 POST {{domain}}/api/order/create HTTP/1.1
 content-type: application/json
 
 {
-  "userId": "5cd390388124fb339807dd53",
-  "goods":[
-    {
-      "createdAt": 1557385035055,
-      "updatedAt": 1557385078059,
-      "_id": "5cd3cf76c57d51618cb328c8",
-      "name": "Jack"
-    },
-    {
-      "createdAt": 1557385035055,
-      "updatedAt": 1557385195573,
-      "_id": "5cd3cfebc57d51618cb328ca",
-      "name": "Jack"
-    }
+  "user": "5cd390388124fb339807dd53",
+  "cart":[
+    "5cdbab71b3e7465bb42bdd04",
+    "5cdbab71b3e7465bb42bdd05"
   ]
 }
 
-### order List
+### Detail
 POST {{domain}}/api/order/list HTTP/1.1
 content-type: application/json
 
 {
-  "pageNumber": 1,
-  "pageSize": 10
+  "userId": "5cd390388124fb339807dd53",
 }
 
-### order Update
+### Update
 POST {{domain}}/api/order/update HTTP/1.1
 content-type: application/json
 
 {
-  "_id": "5cd390388124fb339807dd53",
-  "name": "jack111"
+  "_id": "5cdbac2199bd6945c441ed89",
+  "status": 1
 }
+
+### Detail
+GEt {{domain}}/api/order/5cdbac2199bd6945c441ed89 HTTP/1.1
