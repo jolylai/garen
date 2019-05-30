@@ -20,12 +20,13 @@ module.exports = app => {
   router.post('/api/user/update', controller.user.update);
 
   // 商品
-  router.get('/api/goods/:id', controller.goods.detail);
   router.get('/api/goods/remove/:id', controller.goods.deleteOne);
   router.post('/api/goods/list', controller.goods.list);
   router.post('/api/goods/create', controller.goods.create);
   router.post('/api/goods/remove', controller.goods.remove);
   router.post('/api/goods/update', controller.goods.update);
+  router.get('/api/goods/recommend', controller.goods.recommend);
+  router.get('/api/goods/:id', controller.goods.detail);
 
   // 订单
   router.get('/api/order/:id', controller.order.detail);
@@ -35,7 +36,7 @@ module.exports = app => {
 
   // 购物车
   router.post('/api/cart/list', controller.cart.list);
-  router.post('/api/cart/create', controller.cart.create);
+  router.post('/api/cart/addGoods', controller.cart.addGoods);
   router.get('/api/cart/deleteone/:id', controller.cart.deleteOne);
   router.get('/api/cart/deleteall/:userid', controller.cart.deleteAll);
 };

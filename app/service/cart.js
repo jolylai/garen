@@ -18,8 +18,24 @@ class CartService extends Service {
       .exec();
   }
 
-  async create(params) {
+  find(params) {
+    return this.ctx.model.Cart.find(params);
+  }
+
+  async isGoodsExist(userId, goodsId) {
+    const cart = await this.find({ user: userId });
+
+    return cart.some(item => item.goods.toString() === goodsId);
+  }
+
+  async addGoods(params) {
     const { ctx } = this;
+    const { goods, user } = params;
+    const isExist = await this.isGoodsExist(user, goods);
+
+    if (isExist) {
+      return;
+    }
     return ctx.model.Cart.create(params);
   }
 
@@ -51,7 +67,6 @@ class CartService extends Service {
    */
 
   async deleteAll(userId) {
-    console.log('userId: ', userId);
     const { ctx } = this;
     return ctx.model.Cart.deleteMany({ user: userId });
   }

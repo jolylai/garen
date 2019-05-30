@@ -15,6 +15,7 @@ module.exports = app => {
     },
     number: {
       type: Number,
+      default: 1,
     },
     createdAt: {
       type: Number,

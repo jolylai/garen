@@ -8,6 +8,11 @@ module.exports = app => {
     name: {
       type: String,
     },
+    banner: [
+      {
+        type: String,
+      },
+    ],
     price: {
       type: Number,
     },
@@ -28,6 +33,10 @@ module.exports = app => {
     },
     unit: {
       type: String,
+    },
+    recommend: {
+      type: Boolean,
+      default: false,
     },
     createdAt: {
       type: Number,

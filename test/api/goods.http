@@ -5,7 +5,16 @@ POST {{domain}}/api/goods/create HTTP/1.1
 content-type: application/json
 
 {
-  "name": "Jack66"
+  "name": "健力宝",
+  "price": 5,
+  "wholesalePrice": 4,
+  "banner": ["https://gradientjoy.com/200x300","https://gradientjoy.com/200x300?id=1","https://gradientjoy.com/200x300?id=2"],
+  "imgUrl": "https://gradientjoy.com/200x300",
+  "description": "这是推荐的商品",
+  "qty": 8,
+  "lockQty": 0,
+  "unit": "箱",
+  "recommend": true
 }
 
 ### goods List
@@ -16,6 +25,9 @@ content-type: application/json
   "pageNumber": 1,
   "pageSize": 100
 }
+
+### Recommend
+Get {{domain}}/api/goods/recommend HTTP/1.1
 
 ### goods Update
 POST {{domain}}/api/goods/update HTTP/1.1
@@ -30,4 +42,4 @@ content-type: application/json
 GEt {{domain}}/api/goods/5cd39ca728bcd710604ce7ec HTTP/1.1
 
 ### goods Remove
-GEt {{domain}}/api/goods/remove/5cd3d63af0df2a6e30a182df HTTP/1.1
+GEt {{domain}}/api/goods/remove/5cef74c5b1dcc77d80bdd898 HTTP/1.1

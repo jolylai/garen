@@ -15,7 +15,7 @@ POST {{domain}}/api/cart/list HTTP/1.1
 content-type: application/json
 
 {
-  "userId": "5cd390388124fb339807dd53"
+  "userId": "5cef8d4cbe2bd83fd4644059"
 }
 
 ### Update

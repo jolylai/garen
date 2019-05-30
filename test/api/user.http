@@ -5,7 +5,13 @@ POST {{domain}}/api/user/create HTTP/1.1
 content-type: application/json
 
 {
-  "name": "Tom"
+  "name": "Joly",
+  "avatar": "https://avatars3.githubusercontent.com/u/15135444?s=40&v=4",
+  "mobile": 18123456789,
+  "email": "123@qq.com",
+  "role": "admin",
+  "address": "厦门市湖里区",
+  "balance": 100
 }
 
 ### User List

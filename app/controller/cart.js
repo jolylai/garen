@@ -20,10 +20,10 @@ class CartController extends Controller {
     }
   }
 
-  async create() {
+  async addGoods() {
     const { ctx, service } = this;
     try {
-      const data = await service.cart.create(ctx.request.body);
+      const data = await service.cart.addGoods(ctx.request.body);
       ctx.body = {
         body: data,
         status: true,
@@ -58,7 +58,6 @@ class CartController extends Controller {
     const { ctx, service } = this;
     try {
       const data = await service.cart.deleteAll(ctx.params.userid);
-      console.log('ctx.params.userid: ', ctx.params.userid);
       ctx.body = {
         body: data,
         status: true,

@@ -104,6 +104,22 @@ class GoodsController extends Controller {
       };
     }
   }
+
+  async recommend() {
+    const { ctx, service } = this;
+    try {
+      const data = await service.goods.getRecommend();
+      ctx.body = {
+        body: data,
+        status: true,
+      };
+    } catch (error) {
+      ctx.body = {
+        error,
+        status: false,
+      };
+    }
+  }
 }
 
 module.exports = GoodsController;

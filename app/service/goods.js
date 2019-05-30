@@ -3,15 +3,19 @@
 const Service = require('egg').Service;
 
 class GoodsService extends Service {
-  async getList(params) {
+  getList(params) {
     const { ctx } = this;
     const { pageNumber = 1, pageSize = 10, ...restParams } = params;
     const skipNumber = (pageNumber - 1) * pageSize;
-    const goods = await ctx.model.Goods.find(restParams)
+    const goods = ctx.model.Goods.find(restParams)
       .skip(skipNumber)
       .limit(pageSize);
 
     return goods;
+  }
+
+  getRecommend() {
+    return this.ctx.model.Goods.find({ recommend: true });
   }
 
   findById(id) {

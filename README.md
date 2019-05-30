@@ -1,7 +1,5 @@
 # Garen
 
-
-
 ## QuickStart
 
 <!-- add docs here for user -->
@@ -34,3 +32,6 @@ $ npm stop
 
 
 [egg]: https://eggjs.org
+
+### Travis
+[Reference](https://juejin.im/post/5a9e1a5751882555712bd8e1#heading-13)
