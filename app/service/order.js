@@ -35,8 +35,14 @@ class OrderService extends Service {
    * @memberof OrderService
    */
 
-  create(params) {
+  async create(params) {
     const { ctx } = this;
+    // 更新购物车状态
+    await Promise.all(
+      params.cart.map(item =>
+        ctx.model.Cart.update({ _id: item }, { isOrder: true })
+      )
+    );
     return ctx.model.Order.create(params);
   }
 

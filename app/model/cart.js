@@ -17,6 +17,10 @@ module.exports = app => {
       type: Number,
       default: 1,
     },
+    isOrder: {
+      type: Boolean,
+      default: false,
+    },
     createdAt: {
       type: Number,
       default: Date.now(),

@@ -8,9 +8,6 @@ module.exports = app => {
     orderNo: {
       type: String,
     },
-    number: {
-      type: Number,
-    },
     status: {
       type: Number,
       enum: [0, 1, 2, 3],

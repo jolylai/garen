@@ -13,7 +13,7 @@ class CartService extends Service {
 
   async findByUserId(userId) {
     const { ctx } = this;
-    return ctx.model.Cart.find({ user: userId })
+    return ctx.model.Cart.find({ user: userId, isOrder: false })
       .populate('goods')
       .exec();
   }
@@ -23,7 +23,7 @@ class CartService extends Service {
   }
 
   async isGoodsExist(userId, goodsId) {
-    const cart = await this.find({ user: userId });
+    const cart = await this.find({ user: userId, isOrder: false });
 
     return cart.some(item => item.goods.toString() === goodsId);
   }
