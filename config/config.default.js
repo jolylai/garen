@@ -31,16 +31,21 @@ module.exports = appInfo => {
     },
   };
 
-  const security = {
+  config.security = {
     csrf: {
       ignoreJSON: true, // 默认为 false，当设置为 true 时，将会放过所有 content-type 为 `application/json` 的请求
     },
+  };
+
+  config.cors = {
+    origin: 'http://localhost:8088',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
+    credentials: true,
   };
 
   return {
     ...config,
     ...userConfig,
     mongoose,
-    security,
   };
 };
