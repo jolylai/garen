@@ -39,4 +39,10 @@ module.exports = app => {
   router.post('/api/cart/addGoods', controller.cart.addGoods);
   router.get('/api/cart/deleteone/:id', controller.cart.deleteOne);
   router.get('/api/cart/deleteall/:userid', controller.cart.deleteAll);
+
+  // 收货地址
+  router.post('/api/address/list', controller.address.list);
+  router.post('/api/address/create', controller.address.create);
+  router.del('/api/address/:id', controller.address.deleteOne);
+  router.post('/api/address/update', controller.address.update);
 };
