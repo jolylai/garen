@@ -33,6 +33,7 @@ module.exports = app => {
   router.post('/api/order/create', controller.order.create);
   // router.post('/api/order/remove', controller.order.remove);
   router.post('/api/order/update', controller.order.update);
+  router.post('/api/order/list', controller.order.list);
 
   // 购物车
   router.post('/api/cart/list', controller.cart.list);

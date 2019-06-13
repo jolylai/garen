@@ -3,6 +3,21 @@
 const Controller = require('egg').Controller;
 
 class OrderController extends Controller {
+  async list() {
+    const { ctx, service } = this;
+    try {
+      const data = await service.order.find(ctx.request.body);
+      ctx.body = {
+        body: data,
+        status: true,
+      };
+    } catch (error) {
+      ctx.body = {
+        error,
+        status: false,
+      };
+    }
+  }
   async detail() {
     const { ctx, service } = this;
     try {

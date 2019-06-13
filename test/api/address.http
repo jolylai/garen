@@ -1,0 +1,35 @@
+@domain = http://127.0.0.1:7001
+
+### Create
+POST {{domain}}/api/cart/create HTTP/1.1
+content-type: application/json
+
+{
+  "user": "5cd390388124fb339807dd53",
+}
+
+### List
+POST {{domain}}/api/address/list HTTP/1.1
+content-type: application/json
+
+{
+  "user": "5cef8d4cbe2bd83fd4644059"
+}
+
+### Update
+POST {{domain}}/api/cart/update HTTP/1.1
+content-type: application/json
+
+{
+  "_id": "5cd39ca728bcd710604ce7ec",
+  "name": "jack1"
+}
+
+### Detail
+GEt {{domain}}/api/cart/5cd390388124fb339807dd53 HTTP/1.1
+
+### DeleteOne
+GEt {{domain}}/api/cart/deleteone/5cd3cf76c57d51618cb328c8 HTTP/1.1
+
+### DeleteAll
+GEt {{domain}}/api/cart/deleteall/5cd390388124fb339807dd53 HTTP/1.1

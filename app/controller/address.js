@@ -7,7 +7,8 @@ class AddressController extends Controller {
   async list() {
     const { ctx, service } = this;
     try {
-      const data = await service.address.find({ user: '11' });
+      const data = await service.address.find(ctx.request.body);
+
       ctx.body = {
         body: data,
         status: true,
@@ -18,7 +19,6 @@ class AddressController extends Controller {
         status: false,
       };
     }
-    ctx.body = 'hi, egg';
   }
 
   async create() {

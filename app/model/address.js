@@ -8,17 +8,33 @@ module.exports = app => {
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
+      required: true,
     },
     provinceId: {
+      type: String,
+    },
+    provinceName: {
       type: String,
     },
     cityId: {
       type: String,
     },
+    cityName: {
+      type: String,
+    },
+    areaId: {
+      type: String,
+    },
+    areaName: {
+      type: String,
+    },
+    name: {
+      type: String,
+    },
     detail: {
       type: String,
     },
-    contact: {
+    mobile: {
       type: String,
     },
     createdAt: {

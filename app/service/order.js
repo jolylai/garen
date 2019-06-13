@@ -3,6 +3,15 @@
 const Service = require('egg').Service;
 
 class OrderService extends Service {
+  async find(...args) {
+    return this.ctx.model.Order.find(...args)
+      .populate({
+        path: 'cart',
+        populate: { path: 'goods' },
+      })
+      .exec();
+  }
+
   async findById(id) {
     const { ctx } = this;
     const result = ctx.model.Order.findById(id)
