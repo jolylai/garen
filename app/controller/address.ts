@@ -1,8 +1,8 @@
 'use strict';
 
-const Controller = require('egg').Controller;
+import { Controller } from 'egg';
 
-class AddressController extends Controller {
+export default class AddressController extends Controller {
   // 短信验证
   async list() {
     const { ctx, service } = this;
@@ -69,5 +69,3 @@ class AddressController extends Controller {
     }
   }
 }
-
-module.exports = AddressController;

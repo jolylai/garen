@@ -1,8 +1,8 @@
 'use strict';
 
-const Controller = require('egg').Controller;
+import { Controller } from 'egg';
 
-class CommonController extends Controller {
+export default class CommonController extends Controller {
   // 短信验证
   async sms() {
     // todo 登录逻辑
@@ -12,5 +12,3 @@ class CommonController extends Controller {
     ctx.body = 'hi, egg';
   }
 }
-
-module.exports = CommonController;

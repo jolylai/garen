@@ -1,8 +1,8 @@
 'use strict';
 
-const Service = require('egg').Service;
+import { Service } from 'egg';
 
-class CartService extends Service {
+export default class CartService extends Service {
   /**
    * 根据用户id查询购物车商品
    *
@@ -25,7 +25,7 @@ class CartService extends Service {
   async isGoodsExist(userId, goodsId) {
     const cart = await this.find({ user: userId, isOrder: false });
 
-    return cart.some(item => item.goods.toString() === goodsId);
+    return cart.some((item) => item.goods.toString() === goodsId);
   }
 
   async addGoods(params) {
@@ -71,5 +71,3 @@ class CartService extends Service {
     return ctx.model.Cart.deleteMany({ user: userId });
   }
 }
-
-module.exports = CartService;

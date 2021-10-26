@@ -1,16 +1,14 @@
 'use strict';
 
-const Controller = require('egg').Controller;
+import { Controller } from 'egg';
 
-class LoginController extends Controller {
+export default class LoginController extends Controller {
   async index() {
     // todo 登录逻辑
     // Cookie Session
-    const { ctx, service } = this;
+    const { ctx } = this;
     const author = ctx.session;
     console.log('author: ', author);
     ctx.body = 'hi, egg';
   }
 }
-
-module.exports = LoginController;

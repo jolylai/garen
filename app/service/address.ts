@@ -1,8 +1,7 @@
 'use strict';
+import { Service } from 'egg';
 
-const Service = require('egg').Service;
-
-class AddressService extends Service {
+export default class AddressService extends Service {
   find(params) {
     return this.ctx.model.Address.find(params).exec();
   }
@@ -22,5 +21,3 @@ class AddressService extends Service {
     return this.ctx.model.Address.deleteOne(params);
   }
 }
-
-module.exports = AddressService;

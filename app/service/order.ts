@@ -1,8 +1,8 @@
 'use strict';
 
-const Service = require('egg').Service;
+import { Service } from 'egg';
 
-class OrderService extends Service {
+export default class OrderService extends Service {
   async find(...args) {
     return this.ctx.model.Order.find(...args)
       .populate({
@@ -48,7 +48,7 @@ class OrderService extends Service {
     const { ctx } = this;
     // 更新购物车状态
     await Promise.all(
-      params.cart.map(item =>
+      params.cart.map((item) =>
         ctx.model.Cart.update({ _id: item }, { isOrder: true })
       )
     );
@@ -75,5 +75,3 @@ class OrderService extends Service {
     return ctx.model.Goods.remove({ orderNo }).exec();
   }
 }
-
-module.exports = OrderService;

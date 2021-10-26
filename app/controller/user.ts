@@ -1,8 +1,8 @@
 'use strict';
 
-const Controller = require('egg').Controller;
+import { Controller } from 'egg';
 
-class UserController extends Controller {
+export default class UserController extends Controller {
   async list() {
     const { ctx, service } = this;
     const data = await service.user.getList(ctx.request.body);
@@ -50,5 +50,3 @@ class UserController extends Controller {
     }
   }
 }
-
-module.exports = UserController;

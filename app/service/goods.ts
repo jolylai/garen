@@ -1,8 +1,8 @@
 'use strict';
 
-const Service = require('egg').Service;
+import { Service } from 'egg';
 
-class GoodsService extends Service {
+export default class GoodsService extends Service {
   getList(params) {
     const { ctx } = this;
     const { pageNumber = 1, pageSize = 10, ...restParams } = params;
@@ -44,5 +44,3 @@ class GoodsService extends Service {
     return ctx.model.Goods.deleteOne({ _id }).exec();
   }
 }
-
-module.exports = GoodsService;

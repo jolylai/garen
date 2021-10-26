@@ -1,8 +1,8 @@
 'use strict';
 
-const Service = require('egg').Service;
+import { Service } from 'egg';
 
-class UserService extends Service {
+export default class UserService extends Service {
   /*
    * 根据用户Id查找用户信息
    * @param {Array} id 用户id
@@ -47,5 +47,3 @@ class UserService extends Service {
   //   return user.avatar || this.makeGravatar(user.email);
   // }
 }
-
-module.exports = UserService;
