@@ -8,9 +8,11 @@ export default class UserService extends Service {
    * @param {Array} id 用户id
    * @return {Promise[users]} 承载用户列表的 Promise 对象
    */
-  getById(id) {
-    const { ctx } = this;
-    return ctx.model.User.findById(id).exec();
+  async getById(userId) {
+    // @ts-ignore
+    const user = await this.app.mysql.get('users', { id: userId });
+
+    return { user };
   }
 
   async getList(params) {
@@ -24,8 +26,11 @@ export default class UserService extends Service {
     return data;
   }
 
-  create(params) {
-    return this.ctx.model.User.create(params);
+  async create(params) {
+    // @ts-ignore
+    const user = await this.app.mysql.get('users', params);
+
+    return user;
   }
 
   update(params) {

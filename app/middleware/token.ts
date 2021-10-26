@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports = () => {
-  return async function(ctx, next) {
+export default () => {
+  return async function (ctx, next) {
     const token = ctx.headers.authorization;
     if (!token) {
       ctx.body = {

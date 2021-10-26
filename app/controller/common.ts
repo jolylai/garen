@@ -7,8 +7,8 @@ export default class CommonController extends Controller {
   async sms() {
     // todo 登录逻辑
     // Cookie Session
-    const { ctx, service } = this;
-    const { request } = ctx;
+    const { ctx } = this;
+
     ctx.body = 'hi, egg';
   }
 }

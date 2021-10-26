@@ -1,8 +1,8 @@
 'use strict';
 
-const Controller = require('egg').Controller;
+import { Controller } from 'egg';
 
-class OrderController extends Controller {
+export default class OrderController extends Controller {
   async list() {
     const { ctx, service } = this;
     try {
@@ -81,5 +81,3 @@ class OrderController extends Controller {
     // todo
   }
 }
-
-module.exports = OrderController;

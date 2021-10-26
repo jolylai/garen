@@ -1,13 +1,13 @@
 'use strict';
 
 /** @type Egg.EggPlugin */
-module.exports = {
+export default {
   // had enabled by egg
   // static: {
   //   enable: true,
   // }
   mongoose: {
-    enable: true,
+    enable: false,
     package: 'egg-mongoose',
   },
   validate: {
@@ -17,5 +17,9 @@ module.exports = {
   cors: {
     enable: true,
     package: 'egg-cors',
+  },
+  mysql: {
+    enable: true,
+    package: 'egg-mysql',
   },
 };
