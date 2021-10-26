@@ -367,7 +367,7 @@
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
 
-"@types/sequelize@^4.27.24":
+"@types/sequelize@^4.27.24", "@types/sequelize@^4.28.10":
   version "4.28.10"
   resolved "https://registry.nlark.com/@types/sequelize/download/@types/sequelize-4.28.10.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fsequelize%2Fdownload%2F%40types%2Fsequelize-4.28.10.tgz#514b716718d4f6f398daaff78c05153534f2104e"
   integrity sha1-UUtxZxjU9vOY2q/3jAUVNTTyEE4=
@@ -4398,7 +4398,7 @@ lodash@^4.17.11, lodash@^4.17.4, lodash@^4.2.0:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
 
-lodash@^4.17.20, lodash@^4.17.5:
+lodash@^4.17.20, lodash@^4.17.21, lodash@^4.17.5:
   version "4.17.21"
   resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw=
@@ -6570,7 +6570,7 @@ typescript@^3.0.0:
   version "3.4.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.5.tgz#2d2618d10bb566572b8d7aad5180d84257d70a99"
 
-typescript@^4.0.0, typescript@^4.4.4:
+typescript@^4.0.0:
   version "4.4.4"
   resolved "https://registry.npmmirror.com/typescript/download/typescript-4.4.4.tgz#2cd01a1a1f160704d3101fd5a58ff0f9fcb8030c"
   integrity sha1-LNAaGh8WBwTTEB/VpY/w+fy4Aww=

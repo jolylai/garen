@@ -1,43 +1,52 @@
 'use strict';
 
 import { Service } from 'egg';
+import { CreateOptions } from 'sequelize';
+
+interface User {
+  id: number;
+  name: string;
+  age: number;
+}
 
 export default class UserService extends Service {
-  /*
-   * 根据用户Id查找用户信息
-   * @param {Array} id 用户id
-   * @return {Promise[users]} 承载用户列表的 Promise 对象
-   */
-  async getById(userId) {
-    // @ts-ignore
-    const user = await this.app.mysql.get('users', { id: userId });
-
-    return { user };
+  async list({ offset = 0, limit = 10 }: { offset: number; limit: number }) {
+    return this.ctx.model.User.findAndCountAll({
+      offset,
+      limit,
+      order: [
+        ['created_at', 'desc'],
+        ['id', 'desc'],
+      ],
+    });
   }
 
-  async getList(params) {
-    const { ctx } = this;
-    const { pageNumber = 1, pageSize = 10, ...restParams } = params;
-    const skipNumber = (pageNumber - 1) * pageSize;
-    const data = await ctx.model.User.find(restParams)
-      .skip(skipNumber)
-      .limit(pageSize);
-
-    return data;
+  async findById(id: number) {
+    const user = await this.ctx.model.User.findByPk(id);
+    if (!user) {
+      this.ctx.throw(404, 'user not found');
+    }
+    return user!;
   }
 
-  async create(params) {
-    // @ts-ignore
-    const user = await this.app.mysql.get('users', params);
-
-    return user;
+  async create(user: CreateOptions) {
+    return this.ctx.model.User.create(user);
   }
 
-  update(params) {
-    const doc = {
-      name: params.name,
-    };
-    return this.ctx.model.User.updateOne({ _id: params._id }, doc).exec();
+  async update(id: number, updates: Omit<User, 'id'>) {
+    const user = await this.ctx.model.User.findByPk(id);
+    if (!user) {
+      this.ctx.throw(404, 'user not found');
+    }
+    return user!.update(updates);
+  }
+
+  async remove(id: number) {
+    const user = await this.ctx.model.User.findByPk(id);
+    if (!user) {
+      this.ctx.throw(404, 'user not found');
+    }
+    return user!.destroy();
   }
 
   // makeGravatar(email) {

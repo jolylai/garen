@@ -26,7 +26,7 @@ export default (appInfo: EggAppConfig) => {
   };
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = ['pagination'];
 
   config.security = {
     csrf: {

@@ -64,7 +64,7 @@ export default (app: EggApplication) => {
   const { STRING, INTEGER, DATE } = app.Sequelize;
 
   // @ts-ignore
-  const User = app.model.define('user', {
+  const Address = app.model.define('address', {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
     name: STRING(30),
     age: INTEGER,
@@ -72,5 +72,5 @@ export default (app: EggApplication) => {
     updated_at: DATE,
   });
 
-  return User;
+  return Address;
 };

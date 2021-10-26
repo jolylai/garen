@@ -1,8 +1,7 @@
 'use strict';
+import { Application } from 'egg';
 
-import { EggApplication } from 'egg';
-
-export default (app: EggApplication) => {
+export default (app: Application) => {
   // @ts-ignore
   const { STRING, INTEGER, DATE } = app.Sequelize;
 
@@ -11,8 +10,6 @@ export default (app: EggApplication) => {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
     name: STRING(30),
     age: INTEGER,
-    created_at: DATE,
-    updated_at: DATE,
   });
 
   return User;

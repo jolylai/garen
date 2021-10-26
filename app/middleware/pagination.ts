@@ -1,24 +1,18 @@
 'use strict';
 
+import { Context } from 'egg';
+
 export default () => {
-  return async (ctx, next) => {
-    if (!ctx.pagination) {
-      const query = ctx.query;
-      const config = ctx.app.config;
-      const pagination = {};
+  return async (ctx: Context, next) => {
+    const { pageNumber, pageSize } = ctx.request.body;
 
-      // 这里限制了最大 limit，不知道实际上需不需要
-      // @ts-ignore
-      pagination.limit = Math.min(
-        100,
-        parseInt(query.limit || config.default_limit, 10)
-      );
-      const page = Math.max(1, parseInt(query.page || config.default_page, 10));
-      // @ts-ignore
-      pagination.skip = (page - 1) * pagination.limit;
-
-      ctx.pagination = pagination;
+    if (pageNumber && pageSize) {
+      ctx.request.body.limit = pageSize;
+      ctx.request.body.offset = (pageNumber - 1) * pageSize;
     }
+
+    console.log('ctx: ', ctx);
+
     await next();
   };
 };

@@ -5,17 +5,32 @@ import { Controller } from 'egg';
 export default class UserController extends Controller {
   async list() {
     const { ctx, service } = this;
-    const data = await service.user.getList(ctx.request.body);
+
+    ctx.validate({
+      offset: { type: 'number' },
+      limit: { type: 'number' },
+    });
+
+    const { offset, limit } = ctx.request.body;
+
+    const { count, rows } = await service.user.list({ offset, limit });
+
     ctx.body = {
-      body: data,
+      body: { total: count, list: rows },
       status: true,
       message: 'success',
     };
   }
 
-  async detail() {
+  async find() {
     const { ctx, service } = this;
-    const data = await service.user.getById(ctx.request.body);
+
+    ctx.validate({ id: 'id' }, ctx.params);
+
+    const { id } = ctx.params;
+
+    const data = await service.user.findById(id);
+
     ctx.body = {
       body: data,
       status: true,
@@ -24,27 +39,55 @@ export default class UserController extends Controller {
   }
 
   async create() {
-    const ctx = this.ctx;
-    const { name, age } = ctx.request.body;
-    const user = await ctx.model.User.create({ name, age });
-    ctx.status = 201;
-    ctx.body = user;
+    const { ctx } = this;
+
+    ctx.validate({
+      name: 'string',
+      age: { type: 'number', min: 1, max: 200 },
+    });
+
+    // const { name, age } = ctx.request.body;
+
+    const user = await this.ctx.service.user.create(ctx.request.body);
+
+    ctx.body = {
+      body: user,
+      status: true,
+      message: 'success',
+    };
   }
 
   async update() {
     const { ctx, service } = this;
-    try {
-      const data = await service.user.update(ctx.request.body);
-      ctx.body = {
-        body: data,
-        status: true,
-        message: 'success',
-      };
-    } catch (error) {
-      ctx.body = {
-        error,
-        status: false,
-      };
-    }
+
+    ctx.validate({
+      id: 'id',
+      name: 'string',
+      age: { type: 'number', min: 0, max: 200 },
+    });
+
+    const { id, name, age } = ctx.request.body;
+
+    const data = await service.user.update(id, { name, age });
+
+    ctx.body = {
+      body: data,
+      status: true,
+      message: 'success',
+    };
+  }
+
+  async remove() {
+    const { ctx, service } = this;
+
+    ctx.validate({ id: 'id' }, ctx.params);
+
+    const data = await service.user.remove(ctx.params.id);
+
+    ctx.body = {
+      body: data,
+      status: true,
+      message: 'success',
+    };
   }
 }

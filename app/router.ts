@@ -16,10 +16,11 @@ export default (app: Application) => {
   // router.post('/api/common/sms', controller.common.sms);
 
   // 用户
-  router.get('/api/user/:id', controller.user.detail);
+  router.get('/api/user/:id', controller.user.find);
   router.post('/api/user/list', controller.user.list);
   router.post('/api/user', controller.user.create);
   router.patch('/api/user', controller.user.update);
+  router.delete('/api/user/:id', controller.user.remove);
 
   // // 商品
   // router.get('/api/goods/remove/:id', controller.goods.deleteOne);

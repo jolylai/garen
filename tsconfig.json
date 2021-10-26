@@ -22,7 +22,7 @@
     "inlineSourceMap": true,
     "importHelpers": true
   },
-  "include": ["app/*"],
+  "include": ["**/*"],
   "exclude": [
     "app/public",
     "app/views"
