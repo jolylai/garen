@@ -6,10 +6,6 @@ export default {
   // static: {
   //   enable: true,
   // }
-  mongoose: {
-    enable: false,
-    package: 'egg-mongoose',
-  },
   validate: {
     enable: true,
     package: 'egg-validate',
@@ -21,5 +17,9 @@ export default {
   mysql: {
     enable: true,
     package: 'egg-mysql',
+  },
+  sequelize: {
+    enable: true,
+    package: 'egg-sequelize',
   },
 };

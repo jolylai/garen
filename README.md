@@ -28,10 +28,13 @@ $ npm stop
 - Use `npm run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
 
 ### Example
-[cnode](https://github.com/cnodejs/egg-cnode)
 
+[cnode](https://github.com/cnodejs/egg-cnode)
 
 [egg]: https://eggjs.org
 
-### Travis
-[Reference](https://juejin.im/post/5a9e1a5751882555712bd8e1#heading-13)
+## Mysql
+
+```shell
+$ docker run --name mysql -e MYSQL_ROOT_PASSWORD=12345678 -p 3306:3306 -d mysql:5.7.36
+```

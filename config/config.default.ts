@@ -28,17 +28,9 @@ export default (appInfo: EggAppConfig) => {
   // add your middleware config here
   config.middleware = [];
 
-  // config.security = {
-  //   csrf: {
-  //     ignoreJSON: true, // 默认为 false，当设置为 true 时，将会放过所有 content-type 为 `application/json` 的请求
-  //   },
-  // };
-
-  // mongodb
-  config.mongoose = {
-    client: {
-      url: 'mongodb://106.12.140.131:27017/garen',
-      options: {},
+  config.security = {
+    csrf: {
+      ignoreJSON: true, // 默认为 false，当设置为 true 时，将会放过所有 content-type 为 `application/json` 的请求
     },
   };
 
@@ -60,6 +52,15 @@ export default (appInfo: EggAppConfig) => {
     app: true,
     // 是否加载到 agent 上，默认关闭
     agent: false,
+  };
+
+  config.sequelize = {
+    dialect: 'mysql',
+    host: '47.113.95.50',
+    port: 3306,
+    database: 'dev',
+    username: 'root',
+    password: '12345678',
   };
 
   return config;

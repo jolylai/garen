@@ -24,13 +24,11 @@ export default class UserController extends Controller {
   }
 
   async create() {
-    const { ctx, service } = this;
-    const data = await service.user.create(ctx.request.body);
-    ctx.body = {
-      body: data,
-      status: true,
-      message: 'success',
-    };
+    const ctx = this.ctx;
+    const { name, age } = ctx.request.body;
+    const user = await ctx.model.User.create({ name, age });
+    ctx.status = 201;
+    ctx.body = user;
   }
 
   async update() {
